@@ -40,14 +40,7 @@ pipeline {
                 }
             }
         }
-        stage('Publish'){
-            steps {
-                script {
-                    rtServer.publishBuildInfo buildInfo
-                }
-            }
-        }
-        stage('Xray Scan'){
+       stage('Xray Scan'){
             when {
                 expression { return params.XRAY_SCAN }
             }
@@ -64,4 +57,12 @@ pipeline {
             }
         }
     }
+       stage('Publish'){
+            steps {
+                script {
+                    rtServer.publishBuildInfo buildInfo
+                }
+            }
+        }
+        
 }
